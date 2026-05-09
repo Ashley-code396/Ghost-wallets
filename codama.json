@@ -1,0 +1,11 @@
+{
+  "idl": "./anchor/target/idl/ghost_wallet.json",
+  "scripts": {
+    "js": [
+      {
+        "from": "@codama/renderers-js",
+        "args": ["./app/generated/ghost_wallet"]
+      }
+    ]
+  }
+}
