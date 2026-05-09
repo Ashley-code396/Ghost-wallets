@@ -76,11 +76,11 @@ export function createWalletSigner(
   session: WalletSession,
   chain: string
 ): TransactionSigner {
-  if (session.signTransaction) {
-    return createModifyingSigner(session, chain);
-  }
   if (session.sendTransaction) {
     return createSendingSigner(session, chain);
+  }
+  if (session.signTransaction) {
+    return createModifyingSigner(session, chain);
   }
   throw new Error("Wallet does not support transaction signing");
 }
