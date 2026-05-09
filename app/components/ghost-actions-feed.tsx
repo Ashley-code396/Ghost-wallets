@@ -68,6 +68,6 @@ function ActionRow({ action }: { action: any }) {
         )}
         <p className="text-xs text-ghost">{timeString ?? "—"}</p>
       </div>
-    </div>
+    </div>   
   );
 }

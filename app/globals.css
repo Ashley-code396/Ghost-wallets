@@ -3,68 +3,66 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #000000;
-  --foreground: #e6ffe6; /* soft luminous green-ish text */
-  --primary: #000000;
-  --primary-foreground: #e6ffe6;
-  --muted: #88ff88;
-  --muted-foreground: #88ff88;
-  --card: #050505;
-  --card-foreground: #e6ffe6;
-  --popover: #050505;
-  --popover-foreground: #e6ffe6;
-  --border: rgba(57,255,20,0.08);
-  --border-low: rgba(57,255,20,0.04);
-  --input: #070707;
-  --accent: #39FF14; /* luminous green */
-  /* slightly muted luminous green for better readability */
-  --accent-foreground: #000000;
-  --accent: #2fe114; /* softer luminous green */
-  --cream: #0a0a0a;
-  --destructive: #ff4d4d;
-  --destructive-foreground: #ff4d4d;
-  --ring: rgba(57,255,20,0.6);
+  --background: #030307; /* deep matte black */
+  --foreground: #E6EEF9; /* ghost white */
+  --primary: #07070b; /* obsidian */
+  --primary-foreground: #E6EEF9;
+  --muted: #6e8bb3; /* muted cold blue */
+  --muted-foreground: #dbe9ff;
+  --card: #05060a; /* card surface */
+  --card-foreground: #E6EEF9;
+  --popover: #06060a;
+  --popover-foreground: #E6EEF9;
+  --border: rgba(0,215,255,0.06); /* subtle cyan edge */
+  --border-low: rgba(138,90,255,0.04); /* subtle violet low */
+  --input: #070709;
+  --accent: #00d7ff; /* electric cyan */
+  --accent-foreground: #00121a;
+  --cream: #07070a;
+  --destructive: #ff6b6b;
+  --destructive-foreground: #ff6b6b;
+  --ring: rgba(0,215,255,0.18);
   --radius: 0.625rem;
   --radius-sm: 0.375rem;
   --elev-1: 0 4px 18px rgba(0,0,0,0.6);
-  --secondary: #f5f5f5;
-  --secondary-foreground: #171717;
+  --secondary: #cfd8ea; /* silver accent */
+  --secondary-foreground: #0b0b0d;
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 .dark {
-  --background: #000000;
-  --foreground: #e6ffe6;
-  --primary: #000000;
-  --primary-foreground: #e6ffe6;
-  --muted: #88ff88;
-  --muted-foreground: #88ff88;
-  --card: #050505;
-  --card-foreground: #e6ffe6;
-  --popover: #050505;
-  --popover-foreground: #e6ffe6;
-  --border: rgba(57,255,20,0.08);
-  --border-low: rgba(57,255,20,0.04);
-  --input: #070707;
-  --accent: #39FF14;
-  --accent-foreground: #000000;
-  --cream: #0a0a0a;
-  --destructive: #ff4d4d;
-  --destructive-foreground: #ff4d4d;
-  --ring: rgba(57,255,20,0.6);
+  --background: #030307;
+  --foreground: #E6EEF9;
+  --primary: #07070b;
+  --primary-foreground: #E6EEF9;
+  --muted: #6e8bb3;
+  --muted-foreground: #dbe9ff;
+  --card: #05060a;
+  --card-foreground: #E6EEF9;
+  --popover: #05060a;
+  --popover-foreground: #E6EEF9;
+  --border: rgba(0,215,255,0.06);
+  --border-low: rgba(138,90,255,0.04);
+  --input: #070709;
+  --accent: #00d7ff;
+  --accent-foreground: #00121a;
+  --cream: #07070a;
+  --destructive: #ff6b6b;
+  --destructive-foreground: #ff6b6b;
+  --ring: rgba(0,215,255,0.18);
   --secondary: #070707;
-  --secondary-foreground: #e6ffe6;
+  --secondary-foreground: #E6EEF9;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-void: #000000;
-  --color-mist: #bfffbf;
-  --color-ghost: #7aff7a;
-  --color-faint-blue: #39FF14;
-  --color-silver: #c8ffd1;
+  --color-mist: #cfd7ff; /* soft violet mist */
+  --color-ghost: #E6EEF9; /* ghost white */
+  --color-faint-blue: #00cfff; /* electric cyan accent */
+  --color-silver: #c8d6ea; /* silver cool */
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-muted: var(--muted);
@@ -103,10 +101,12 @@
 
   h1, h2, h3 {
     font-family: var(--font-display), var(--font-sans);
-    color: var(--color-mist);
+    /* Use high-contrast foreground for headings */
+    color: var(--color-foreground);
     letter-spacing: -0.008em;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.6);
-    line-height: 1.05;
+    /* stronger readable shadow + subtle cinematic bloom */
+    text-shadow: 0 6px 24px rgba(6,20,40,0.55), 0 1px 0 rgba(255,255,255,0.02);
+    line-height: 1.03;
   }
 
   h1 {
@@ -120,4 +120,97 @@
     box-shadow: var(--elev-1);
     background: var(--color-void);
   }
+
+  /* Cinematic cyberpunk overlays and effects */
+  .ghost-ui-root {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(1200px 800px at 10% 10%, rgba(46,24,95,0.12), transparent 8%), radial-gradient(1000px 600px at 90% 90%, rgba(0,215,255,0.04), transparent 12%), var(--color-void);
+  }
+
+  /* cursor reactive radial light */
+  .cursor-light {
+    position: absolute;
+    pointer-events: none;
+    inset: 0;
+    mix-blend-mode: screen;
+  }
+
+  /* holographic card base */
+  .holo-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border: 1px solid rgba(125, 90, 255, 0.12);
+    box-shadow: 0 8px 40px rgba(45,12,85,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    backdrop-filter: blur(8px) saturate(120%);
+    transition: transform 400ms cubic-bezier(.2,.9,.1,1), box-shadow 300ms;
+  }
+
+  .holo-card:hover { transform: translateY(-10px) rotateX(3deg); box-shadow: 0 24px 60px rgba(45,12,85,0.7); }
+
+  /* animated gradient border */
+  .animated-border {
+    position: relative;
+    isolation: isolate;
+  }
+  .animated-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(90deg, rgba(117,36,255,0.35), rgba(52,239,255,0.35), rgba(255,255,255,0.05));
+    filter: blur(8px);
+    opacity: 0.9;
+    z-index: -1;
+    animation: border-slide 6s linear infinite;
+  }
+
+  @keyframes border-slide { from { background-position: 0% 50% } to { background-position: 100% 50% } }
+
+  /* glitch keyframes */
+  @keyframes glitch-translate {
+    0% { transform: translateX(0) }
+    20% { transform: translateX(-2px) }
+    40% { transform: translateX(2px) }
+    60% { transform: translateX(-1px) }
+    80% { transform: translateX(1px) }
+    100% { transform: translateX(0) }
+  }
+
+  @keyframes pulse-blue { 0% { box-shadow: 0 0 0 0 rgba(56,230,255,0.18)} 70% { box-shadow: 0 0 60px 18px rgba(56,230,255,0)} 100% { box-shadow: 0 0 0 0 rgba(56,230,255,0) } }
+
+  .glow-pulse { animation: pulse-blue 2.5s infinite; }
+
+  /* particle container - lightweight CSS-driven */
+  .particle-layer { position: absolute; inset: 0; pointer-events: none; }
+  .particle { position: absolute; width: 6px; height: 6px; border-radius: 999px; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0.2)); opacity: 0.06; filter: blur(6px); mix-blend-mode: screen; }
+
+  /* small utilities */
+  .ghost-title {
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    /* high-contrast ghost white headline that's readable over effects */
+    color: var(--color-ghost);
+    -webkit-text-stroke: 0.35px rgba(0,0,0,0.45);
+    /* cinematic glow supporting readability */
+    text-shadow: 0 10px 40px rgba(0,110,160,0.12), 0 4px 18px rgba(138,90,255,0.06), 0 1px 0 rgba(0,0,0,0.6);
+    position: relative;
+    z-index: 30; /* ensure above particle/noise overlays */
+  }
+
+  /* Reveal animations */
+  @keyframes reveal-fade-slide { from { opacity: 0; transform: translateY(18px) } to { opacity: 1; transform: translateY(0) } }
+  @keyframes glow-pulse-slow { 0% { filter: drop-shadow(0 0 0 rgba(0,200,255,0)) } 50% { filter: drop-shadow(0 14px 36px rgba(0,160,200,0.06)) } 100% { filter: drop-shadow(0 0 0 rgba(0,200,255,0)) } }
+
+  .reveal-root { will-change: transform, opacity; }
+  .reveal-hidden { opacity: 0; transform: translateY(18px); }
+  .reveal-visible { animation: reveal-fade-slide 700ms cubic-bezier(.2,.9,.2,1) both; }
+  .reveal-visible.glow { animation: reveal-fade-slide 700ms cubic-bezier(.2,.9,.2,1) both, glow-pulse-slow 2400ms ease-in-out infinite; }
+
+  /* Section spacing and safe zone for headings */
+  main > section { padding-top: 2.25rem; }
+
+  /* Extra class to ensure heading contrast when used directly */
+  .section-title { color: var(--color-ghost); font-weight: 800; text-shadow: 0 8px 30px rgba(0,120,200,0.08); z-index: 30; position: relative; }
 }

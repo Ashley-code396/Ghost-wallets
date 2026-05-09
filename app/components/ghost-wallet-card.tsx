@@ -5,6 +5,8 @@ import { lamportsToSolString } from "../lib/lamports";
 
 export function GhostWalletCard({ wallet, onFund, onExecute }: any) {
   const [timeLeft, setTimeLeft] = useState<number>(0);
+  const [isFunding, setIsFunding] = useState(false);
+  const [fundAmount, setFundAmount] = useState("0.1");
 
   useEffect(() => {
     const updateTimer = () => {
@@ -51,20 +53,53 @@ export function GhostWalletCard({ wallet, onFund, onExecute }: any) {
         </div>
 
         <div className="flex gap-2 pt-2 border-t border-faint-blue/10">
-          <button 
-            onClick={onFund}
-            disabled={isExpired}
-            className="flex-1 rounded border border-mist/30 bg-mist/5 py-1.5 text-sm font-medium text-mist transition hover:bg-mist/10 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Fund
-          </button>
-          <button 
-            onClick={onExecute}
-            disabled={isExpired || wallet.balance === 0n}
-            className="flex-1 rounded bg-silver text-void py-1.5 text-sm font-bold transition hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Execute
-          </button>
+          {isFunding ? (
+            <div className="flex-1 flex gap-1 items-center">
+              <input
+                type="number"
+                step="0.01"
+                min="0"
+                value={fundAmount}
+                onChange={(e) => setFundAmount(e.target.value)}
+                className="w-16 rounded border border-mist/30 bg-void px-2 py-1.5 text-sm text-silver focus:outline-none focus:border-mist"
+                placeholder="SOL"
+                autoFocus
+              />
+              <button
+                onClick={() => {
+                  if (onFund) onFund(fundAmount);
+                  setIsFunding(false);
+                }}
+                className="flex-1 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 py-1.5 text-sm font-medium transition hover:bg-emerald-500/30"
+              >
+                Confirm
+              </button>
+              <button
+                onClick={() => setIsFunding(false)}
+                className="px-2 rounded border border-mist/20 text-mist/60 py-1.5 text-sm font-medium transition hover:bg-mist/10 hover:text-mist"
+              >
+                ✕
+              </button>
+            </div>
+          ) : (
+            <button 
+              onClick={() => setIsFunding(true)}
+              disabled={isExpired}
+              className="flex-1 rounded border border-mist/30 bg-mist/5 py-1.5 text-sm font-medium text-mist transition hover:bg-mist/10 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Fund
+            </button>
+          )}
+          
+          {!isFunding && (
+            <button 
+              onClick={onExecute}
+              disabled={isExpired || wallet.balance === 0n}
+              className="flex-1 rounded bg-silver text-void py-1.5 text-sm font-bold transition hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Execute
+            </button>
+          )}
         </div>
       </div>
     </div>
